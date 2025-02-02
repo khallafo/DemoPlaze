@@ -45,21 +45,15 @@ jobs:
       - name: Run tests and generate Allure results
         run: mvn clean test
 
-      - name: Allure generate report 
- 
-        uses: yhrunyk/action-allure-generate-report@master
-        with:
-          # Allure test result data dir
-          results-dir: # default is allure-results
-          # Allure report target dir
-          report-dir: # default is allure-report
-          
+      - name: Generate Allure Report
+        run: mvn allure:report
 
-      - name: Upload Allure Report as Artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload Allure Report as Artifact (Fix for v4)
+        uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: target/site/allure-maven-plugin
+          path: target/site/allure-maven-plugin/
+          compression-level: 0  # Optional: Avoids excessive compression
 
       # Email Notification Step
       - name: Send Email Notification with Allure Report
@@ -70,7 +64,7 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "Allure Test Report - Build ${{ github.run_number }}"
-          body: "Hello, I've attached the latest Allure report for the test run.\n\nBest Regards,\nGitHub Actions"
+          body: "Hello,\n\nAttached is the latest Allure report for the test run.\n\nBest Regards,\nGitHub Actions"
           to: mahmoudkhallaf277@gmail.com
           from: GitHub Actions <${{ secrets.EMAIL_USERNAME }}>
           attachments: target/site/allure-maven-plugin/index.html
