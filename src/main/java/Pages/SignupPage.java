@@ -25,7 +25,7 @@ public class SignupPage extends BasePage {
     }
 
     public void clickSignupButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement signupButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("signin2")));
 
         try {
