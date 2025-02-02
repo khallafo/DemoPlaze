@@ -1,0 +1,4 @@
+browser=chrome
+Options=--remote-allow-origins=*,--incognito,--ignore-certificate-errors
+baseUrl=https://www.demoblaze.com/
+timeout=10s

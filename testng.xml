@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="D:/testing materials/automation/projects/DemoBlaze">
+        <classes>
+            <class name="TestCases.SignupTest"/>
+        </classes>
+    </test>
+</suite>
