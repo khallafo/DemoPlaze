@@ -44,7 +44,8 @@ jobs:
           Expand-Archive -Path "allure.zip" -DestinationPath "allure"
 
       - name: Generate Allure Report
-        run: .\allure\allure-commandline-2.24.0\bin\allure.bat generate target/allure-results -o target/allure-report --clean
+        run: .\allure\allure-2.24.0\bin\allure.bat generate target/allure-results -o target/allure-report --clean
+
 
       - name: Zip Allure Report
         run: |
