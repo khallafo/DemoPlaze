@@ -45,26 +45,4 @@ jobs:
       - name: Run tests and generate Allure results
         run: mvn clean test
 
-      - name: Generate Allure Report
-        run: mvn allure:report
-
-      - name: Upload Allure Report as Artifact (Fix for v4)
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: target/site/allure-maven-plugin/
-          compression-level: 0  # Optional: Avoids excessive compression
-
-      # Email Notification Step
-      - name: Send Email Notification with Allure Report
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 587
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "Allure Test Report - Build ${{ github.run_number }}"
-          body: "Hello,\n\nAttached is the latest Allure report for the test run.\n\nBest Regards,\nGitHub Actions"
-          to: mahmoudkhallaf277@gmail.com
-          from: GitHub Actions <${{ secrets.EMAIL_USERNAME }}>
-          attachments: target/site/allure-maven-plugin/index.html
+     
