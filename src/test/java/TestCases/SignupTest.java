@@ -98,4 +98,68 @@ public class SignupTest extends TestBase {
         // Handle expected alert (if applicable)
         handleAlert("Username or Password too long.");
     }
+
+    @Test
+    public void testSignupWithWhitespaceUsername() {
+        signupPage = new SignupPage(driver);
+        String whitespaceUsername = "   ";
+        String randomPassword = new Faker().internet().password(8, 16);
+
+        signupPage.signup(whitespaceUsername, randomPassword);
+        System.out.println("Signup attempted with whitespace username");
+
+        // Handle expected alert
+        handleAlert("Please fill out Username and Password.");
+    }
+
+    @Test
+    public void testSignupWithWhitespacePassword() {
+        signupPage = new SignupPage(driver);
+        String randomName = new Faker().name().username();
+        String whitespacePassword = "   ";
+
+        signupPage.signup(randomName, whitespacePassword);
+        System.out.println("Signup attempted with whitespace password");
+
+        // Handle expected alert
+        handleAlert("Please fill out Username and Password.");
+    }
+
+    @Test
+    public void testSignupWithSQLInjection() {
+        signupPage = new SignupPage(driver);
+        String sqlInjectionUsername = "admin' OR '1'='1";
+        String sqlInjectionPassword = "password' OR '1'='1";
+
+        signupPage.signup(sqlInjectionUsername, sqlInjectionPassword);
+        System.out.println("Signup attempted with SQL injection in username and password");
+
+        // Handle expected alert (if applicable)
+        handleAlert("Invalid characters in Username or Password.");
+    }
+
+    @Test
+    public void testSignupWithHTMLTags() {
+        signupPage = new SignupPage(driver);
+        String htmlTagUsername = "<script>alert('test')</script>";
+        String htmlTagPassword = "<b>password</b>";
+
+        signupPage.signup(htmlTagUsername, htmlTagPassword);
+        System.out.println("Signup attempted with HTML tags in username and password");
+
+        // Handle expected alert (if applicable)
+        handleAlert("Invalid characters in Username or Password.");
+    }
+
+    @Test
+    public void testSignupWithMaxLengthUsername() {
+        signupPage = new SignupPage(driver);
+        String maxLengthUsername = new Faker().lorem().characters(50); // Assuming max length is 50
+        String randomPassword = new Faker().internet().password(8, 16);
+
+        signupPage.signup(maxLengthUsername, randomPassword);
+        System.out.println("Signup attempted with max length username");
+
+        // Handle expected alert (if applicable)}
+    }
 }
