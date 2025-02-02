@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "master" ]
 
-permissions:
-  contents: read  # Allows the workflow to read repo contents
-  packages: write # Required for dependency submission
 
 jobs:
   build:
