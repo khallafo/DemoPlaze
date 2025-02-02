@@ -61,5 +61,6 @@ jobs:
           subject: "Allure Test Report"
           body: "Attached is the Allure test report."
           to: mahmoudkhallaf277@gmail.com
-          from: "QA Automation <${{ secrets.GMAIL_USERNAME }}>"
+          from: "${{ secrets.GMAIL_USERNAME }}"  # Ensure valid email format
           attachments: allure-report.zip
+
