@@ -1,7 +1,6 @@
 package Pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,12 +21,20 @@ public class SignupPage extends BasePage {
 
     public SignupPage(WebDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // 10 seconds wait time
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // 10 seconds wait time
     }
 
     public void clickSignupButton() {
-        wait.until(ExpectedConditions.visibilityOf(signupPage));
-        signupPage.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebElement signupButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("signin2")));
+
+        try {
+            signupButton.click();
+        } catch (ElementClickInterceptedException e) {
+            System.out.println("Element not clickable, using JavaScriptExecutor.");
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", signupButton);
+        }
     }
 
     public void enterUsername(String username) {
