@@ -15,11 +15,6 @@ public class SignupTest extends TestBase {
     private SignupPage signupPage;
     private Faker faker;
 
-    @BeforeMethod
-    public void setupTest() {
-        signupPage = new SignupPage(driver);
-        faker = new Faker();
-    }
 
     /**
      * Handles JavaScript alerts & verifies the expected message
@@ -41,6 +36,8 @@ public class SignupTest extends TestBase {
 
     @Test
     public void testSignup() {
+        signupPage = new SignupPage(driver);
+        faker = new Faker();
         String randomName = faker.name().username(); // Ensure valid username format
         String randomPassword = faker.internet().password(8, 16); // Password between 8-16 chars
 
@@ -50,6 +47,8 @@ public class SignupTest extends TestBase {
 
     @Test
     public void testSignupWithEmptyUsername() {
+        signupPage = new SignupPage(driver);
+        faker = new Faker();
         String randomPassword = faker.internet().password(8, 16);
 
         signupPage.signup("", randomPassword);
@@ -61,6 +60,8 @@ public class SignupTest extends TestBase {
 
     @Test
     public void testSignupWithEmptyPassword() {
+        signupPage = new SignupPage(driver);
+        faker = new Faker();
         String randomName = faker.name().username();
 
         signupPage.signup(randomName, "");
@@ -72,6 +73,8 @@ public class SignupTest extends TestBase {
 
     @Test
     public void testSignupWithSpecialCharacters() {
+        signupPage = new SignupPage(driver);
+        faker = new Faker();
         String specialCharName = "!@#$%^&*()_+";
         String specialCharPassword = "!@#$%^&*()_+";
 
@@ -84,6 +87,8 @@ public class SignupTest extends TestBase {
 
     @Test
     public void testSignupWithLongUsernameAndPassword() {
+        signupPage = new SignupPage(driver);
+        faker = new Faker();
         String longUsername = faker.lorem().characters(255);
         String longPassword = faker.lorem().characters(255);
 
