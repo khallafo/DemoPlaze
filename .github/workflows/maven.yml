@@ -58,8 +58,8 @@ jobs:
           server_port: 587
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_PASSWORD }}
-          subject: Allure Test Report
+          subject: "Allure Test Report"
           body: "Attached is the Allure test report."
           to: mahmoudkhallaf277@gmail.com
-          from: ${{ secrets.GMAIL_USERNAME }}
+          from: "QA Automation <${{ secrets.GMAIL_USERNAME }}>"
           attachments: allure-report.zip
