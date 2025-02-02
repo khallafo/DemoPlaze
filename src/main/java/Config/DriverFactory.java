@@ -24,7 +24,7 @@ public class DriverFactory {
 
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--remote-allow-origins=*,--incognito,--ignore-certificate-errors,--start-maximized");
+                    chromeOptions.addArguments("--start-maximized,--remote-allow-origins=*,--incognito,--ignore-certificate-errors");
                     driver = new ChromeDriver(chromeOptions);
                     break;
                 case "firefox":

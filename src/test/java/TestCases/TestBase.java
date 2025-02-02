@@ -16,6 +16,7 @@ public class TestBase {
         String browser = PropertyReader.getProperty("browser");
         DriverFactory.initDriver(browser);
         driver = DriverFactory.getDriver();
+        driver.manage().window().maximize();
         driver.get(PropertyReader.getProperty("baseUrl"));
     }
     @AfterMethod
