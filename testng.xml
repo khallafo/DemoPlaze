@@ -4,6 +4,7 @@
     <test verbose="2" preserve-order="true" name="D:/testing materials/automation/projects/DemoBlaze">
         <classes>
             <class name="TestCases.SignupTest"/>
+            <class name="TestCases.LogInTest"></class>
         </classes>
     </test>
 </suite>
