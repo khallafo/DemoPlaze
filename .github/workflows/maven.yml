@@ -47,20 +47,5 @@ jobs:
         run: .\allure\allure-2.24.0\bin\allure.bat generate target/allure-results -o target/allure-report --clean
 
 
-      - name: Zip Allure Report
-        run: |
-          Compress-Archive -Path target/allure-report/* -DestinationPath allure-report.zip
-
-      - name: Send email with Allure report
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 587
-          username: ${{ secrets.GMAIL_USERNAME }}
-          password: ${{ secrets.GMAIL_PASSWORD }}
-          subject: "Allure Test Report"
-          body: "Attached is the Allure test report."
-          to: mahmoudkhallaf277@gmail.com
-          from: "${{ secrets.GMAIL_USERNAME }}"  # Ensure valid email format
-          attachments: allure-report.zip
+     
 
